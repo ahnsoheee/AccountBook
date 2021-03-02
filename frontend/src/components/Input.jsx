@@ -6,9 +6,11 @@ const Input = ({ type, name, placeholder }) => {
 };
 
 const InputBox = styled.input`
-  height: 30px;
+  height: 35px;
   width: 500px;
   margin: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 `;
 
 export default Input;
