@@ -12,6 +12,11 @@
   
 ![로그인](https://user-images.githubusercontent.com/61968474/109674511-52e7f980-7bba-11eb-81c4-f4a92e90b85e.PNG)
 
+</details>
+
+<details>
+  <summary>회원가입 화면</summary>
+
 ![회원가입](https://user-images.githubusercontent.com/61968474/109675674-5760e200-7bbb-11eb-87fd-3f3c2b0c7a6c.png)
 
 </details>
