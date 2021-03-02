@@ -9,6 +9,7 @@
 
 <details>
   <summary>로그인 화면</summary>
-  ![로그인](https://user-images.githubusercontent.com/61968474/109674511-52e7f980-7bba-11eb-81c4-f4a92e90b85e.PNG)
+  
+![로그인](https://user-images.githubusercontent.com/61968474/109674511-52e7f980-7bba-11eb-81c4-f4a92e90b85e.PNG)
 
 </details>
