@@ -8,7 +8,7 @@ const LoginForm = () => {
     <Form>
       <Input type="text" name="id" placeholder="아이디" />
       <Input type="password" name="pw" placeholder="비밀번호" />
-      <SubmitButton width="509px" height="35px" />
+      <SubmitButton width="509px" height="35px" name="로그인" />
     </Form>
   );
 };
