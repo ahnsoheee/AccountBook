@@ -20,3 +20,9 @@
 ![회원가입](https://user-images.githubusercontent.com/61968474/109675674-5760e200-7bbb-11eb-87fd-3f3c2b0c7a6c.png)
 
 </details>
+
+### 2021-03-02
+
+- [x] user 테이블 생성
+- [x] DB(MySQL) 연결
+- [x] 회원가입 기능 구현
