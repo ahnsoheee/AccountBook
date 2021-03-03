@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from "react";
+import SignPage from "./pages/SignPage";
+import MainPage from "./pages/MainPage";
 
 const App = () => {
-  return <div className="container" />
+  const [isLogin, setLogin] = useState(false);
+
+  return isLogin ? <MainPage /> : <SignPage />;
 };
-  
+
 export default App;
