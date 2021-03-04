@@ -9,13 +9,13 @@ class User {
     return result;
   }
 
-  //   async findUser(id, pw) {
-  //   const db = await connect();
-  //   const sql = "SELECT id, pw, name FROM user WHERE id = (?) and pw = (?)";
-  //   const params = [id, pw];
-  //   const [result] = await db.query(sql, params);
-  //   return result[0];
-  // }
+  async findUser(user) {
+    const db = await connect();
+    const sql = "SELECT id, pw, name FROM user WHERE id = (?) and pw = (?)";
+    const params = [user.id, user.pw];
+    const [result] = await db.query(sql, params);
+    return result[0];
+  }
 }
 
 const user = new User();
