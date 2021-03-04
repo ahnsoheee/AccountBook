@@ -9,6 +9,9 @@ exports.signup = async (req, res, next) => {
 
 exports.signin = async (req, res, next) => {
   const userDTO = req.body;
-  const result = await userService.signin(userDTO);
-  res.json({ result: result });
+  const token = await userService.signin(userDTO);
+  if (token) {
+    res.cookie("token", token, { httpOnly: true });
+  }
+  res.json({ result: token });
 };
