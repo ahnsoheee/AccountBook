@@ -11,6 +11,16 @@ class UserService {
     }
     return true;
   }
+
+  async signin(user) {
+    let result;
+    try {
+      result = await userModel.findUser(user);
+    } catch (err) {
+      return false;
+    }
+    return true;
+  }
 }
 
 const userService = new UserService();
