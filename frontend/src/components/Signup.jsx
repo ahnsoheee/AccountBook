@@ -42,9 +42,9 @@ const Signup = () => {
   ) : (
     <>
       <Form title="회원가입">
+        <Input type="text" name="name" placeholder="이름" value={name} onChange={onChangeName} required />
         <Input type="text" name="id" placeholder="아이디" value={id} onChange={onChangeId} required />
-        <Input type="text" name="pw" placeholder="이름" value={pw} onChange={onChangePw} required />
-        <Input type="password" name="name" placeholder="비밀번호" value={name} onChange={onChangeName} required />
+        <Input type="password" name="pw" placeholder="비밀번호" value={pw} onChange={onChangePw} required />
         <SignButton name="회원가입" width="507px" height="40px" background="#ff4646" onClick={onClick} />
       </Form>
     </>
