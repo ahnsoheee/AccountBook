@@ -1,4 +1,5 @@
 const connect = require("../db/mysql");
+const bcrypt = require("bcrypt");
 
 class User {
   async create(user) {
@@ -11,10 +12,13 @@ class User {
 
   async findUser(user) {
     const db = await connect();
-    const sql = "SELECT id, pw, name FROM user WHERE id = (?) and pw = (?)";
-    const params = [user.id, user.pw];
+    const sql = "SELECT id, pw, name FROM user WHERE id = (?)";
+    const params = [user.id];
     const [result] = await db.query(sql, params);
-    return result[0];
+    if (result) {
+      const res = bcrypt.compareSync(user.pw, result[0].pw);
+      return res;
+    }
   }
 }
 
