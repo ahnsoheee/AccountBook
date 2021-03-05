@@ -15,3 +15,11 @@ exports.signin = async (req, res, next) => {
   }
   res.json({ result: token });
 };
+
+exports.auth = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (token) {
+    const user = await userService.auth(token);
+    res.json({ result: user });
+  }
+};
