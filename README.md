@@ -31,3 +31,16 @@
 
 - [x] 로그인 기능 구현
 - [x] 회원가입시 비밀번호 암호화
+
+### 2021-03-05
+
+- [x] 로그인 상태 유지하기
+- [x] 로그아웃 기능 구현
+- [x] 탭 메뉴 구현
+
+<details>
+  <summary>탭 메뉴</summary>
+
+![image](https://user-images.githubusercontent.com/61968474/110120749-cda25600-7e00-11eb-9214-ac2ed0a711a2.png)
+
+</details>
