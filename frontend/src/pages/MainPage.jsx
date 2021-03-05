@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Main/Header";
 import Signin from "../components/Sign/Signin";
+import Main from "../components/Main";
 import { API } from "../api/api";
 
 const MainPage = () => {
@@ -17,7 +18,14 @@ const MainPage = () => {
     }
   }, [name, isAuth]);
 
-  return isAuth ? <Header user={name} /> : <Signin />;
+  return isAuth ? (
+    <>
+      <Header user={name} />
+      <Main />
+    </>
+  ) : (
+    <Signin />
+  );
 };
 
 export default MainPage;
