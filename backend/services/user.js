@@ -35,6 +35,20 @@ class UserService {
       return false;
     }
   }
+
+  async auth(token) {
+    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    try {
+      const result = await userModel.findById(decode.id);
+      if (result) {
+        return result;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 const userService = new UserService();
