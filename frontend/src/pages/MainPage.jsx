@@ -4,19 +4,20 @@ import Signin from "../components/Signin";
 import { API } from "../api/api";
 
 const MainPage = () => {
+  const [name, setName] = useState("");
   const [isAuth, setAuth] = useState(false);
 
   useEffect(async () => {
     const user = await API.get("/user/auth");
-    console.log(user);
     if (user) {
+      setName(user.name);
       setAuth(true);
     } else {
       setAuth(false);
     }
-  });
+  }, [name, isAuth]);
 
-  return isAuth ? <Header /> : <Signin />;
+  return isAuth ? <Header user={name} /> : <Signin />;
 };
 
 export default MainPage;
