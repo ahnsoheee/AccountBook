@@ -5,7 +5,7 @@ import Form from "./Form";
 import Signup from "./Signup";
 import { API } from "../api/api";
 
-const Signin = ({ setLogin }) => {
+const Signin = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [signup, setSignup] = useState(false);
@@ -23,13 +23,12 @@ const Signin = ({ setLogin }) => {
       alert("아이디와 비밀번호를 모두 입력하세요.");
     } else {
       const res = await API.post("/user/signin", { id: id, pw: pw });
-      if (res.result) {
-        setLogin(true);
-      } else {
+      if (!res.result) {
         alert("아이디 또는 비밀번호가 틀렸습니다.");
       }
     }
   };
+
   return signup ? (
     <Signup />
   ) : (
@@ -41,4 +40,5 @@ const Signin = ({ setLogin }) => {
     </Form>
   );
 };
+
 export default Signin;
