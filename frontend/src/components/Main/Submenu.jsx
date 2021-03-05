@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { API } from "../api/api";
+import { API } from "../../api/api";
 
 const Submenu = () => {
   const onClick = async () => {

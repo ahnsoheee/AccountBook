@@ -14,15 +14,16 @@ const Menu = ({ user }) => {
 
   return click ? (
     <>
-      <Button onClick={onClick}>{user}</Button>
+      <Button onClick={onClick}>{user}님</Button>
       <Submenu />
     </>
   ) : (
-    <Button onClick={onClick}>{user}</Button>
+    <Button onClick={onClick}>{user}님</Button>
   );
 };
 
 const Button = styled.button`
+  width: 100px;
   font-size: 12px;
   text-align: center;
   background-color: #ff4646;

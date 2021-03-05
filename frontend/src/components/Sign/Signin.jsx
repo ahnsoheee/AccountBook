@@ -3,7 +3,7 @@ import Input from "./Input";
 import SignButton from "./SignButton";
 import Form from "./Form";
 import Signup from "./Signup";
-import { API } from "../api/api";
+import { API } from "../../api/api";
 
 const Signin = () => {
   const [id, setId] = useState("");

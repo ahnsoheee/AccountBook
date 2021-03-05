@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
-import Signin from "../components/Signin";
+import Header from "../components/Main/Header";
+import Signin from "../components/Sign/Signin";
 import { API } from "../api/api";
 
 const MainPage = () => {

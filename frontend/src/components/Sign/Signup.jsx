@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import SignButton from "./SignButton";
 import Form from "./Form";
 import Input from "./Input";
-import { API } from "../api/api";
+import { API } from "../../api/api";
 import Signin from "./Signin";
 
 const Signup = () => {
