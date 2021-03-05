@@ -20,6 +20,18 @@ class User {
       return res;
     }
   }
+
+  async findById(id) {
+    const db = await connect();
+    const sql = "SELECT id, name FROM user WHERE id = (?)";
+    const params = [id];
+    const [result] = await db.query(sql, params);
+    if (result) {
+      return result[0];
+    } else {
+      return false;
+    }
+  }
 }
 
 const user = new User();
