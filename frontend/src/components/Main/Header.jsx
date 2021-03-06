@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   width: 90%;
-  padding-left: 50px;
+  padding-left: 100px;
   font-weight: bold;
   font-size: 15px;
   text-align: center;
