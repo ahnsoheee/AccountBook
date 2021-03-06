@@ -44,9 +44,8 @@ const Main = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 30px;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: #f8f1f1; ;
 `;
 
 export default Main;

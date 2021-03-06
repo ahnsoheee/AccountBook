@@ -8,9 +8,11 @@ const Tab = ({ children }) => {
 const Wrapper = styled.div`
   width: 600px;
   height: 35px;
+  margin-top: 60px;
   display: flex;
   border: 1px solid #cccccc;
-  border-radius: 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
 `;
 
 export default Tab;
