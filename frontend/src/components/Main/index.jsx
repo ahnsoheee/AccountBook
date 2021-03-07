@@ -3,6 +3,7 @@ import Tab from "./Tab";
 import styled from "styled-components";
 import TabItem from "./TabItem";
 import Content from "./Content";
+import Input from "./Input";
 
 const Main = () => {
   const [list, setList] = useState(true);
@@ -36,13 +37,24 @@ const Main = () => {
           <TabItem name="통계" onClick={onClickStat} state={stat} />
         </Tab>
       </Wrapper>
-      <Wrapper>{list ? <Content>내역</Content> : cal ? <Content>달력</Content> : <Content>통계</Content>}</Wrapper>
+      <Wrapper>
+        {list ? (
+          <Content>
+            <Input />
+          </Content>
+        ) : cal ? (
+          <Content>달력</Content>
+        ) : (
+          <Content>통계</Content>
+        )}
+      </Wrapper>
     </>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
+  margin-top: 10px;
   flex-direction: row;
   justify-content: center;
   background-color: #f8f1f1; ;
