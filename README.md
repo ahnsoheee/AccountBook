@@ -44,3 +44,7 @@
 ![image](https://user-images.githubusercontent.com/61968474/110120749-cda25600-7e00-11eb-9214-ac2ed0a711a2.png)
 
 </details>
+
+### 2021-03-06
+
+- [x] 내역 입력 폼 구현
