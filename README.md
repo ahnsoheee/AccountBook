@@ -48,3 +48,21 @@
 ### 2021-03-06
 
 - [x] 내역 입력 폼 구현
+
+<details>
+  <summary>내역 입력 폼</summary>
+
+![image](https://user-images.githubusercontent.com/61968474/110498469-b33ae600-813a-11eb-8bcd-e88786d2106f.png)
+
+</details>
+
+### 2021-03-09
+
+- [x] 내역 리스트 조회 기능 구현
+
+<details>
+  <summary>내역 리스트</summary>
+  
+![image](https://user-images.githubusercontent.com/61968474/110498651-de253a00-813a-11eb-8471-84ebd47ece2f.png)
+
+</details>
