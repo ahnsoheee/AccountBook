@@ -14,7 +14,7 @@ const Item = styled.button`
   text-align: center;
   font-weight: bold;
   border-radius: 15px;
-  margin: 3px;
+  margin: 4px;
   border: none;
   color: ${(props) => (props.state ? "#ffffff" : "#000000")};
   background-color: ${(props) => (props.state ? "#ff4646" : "#ffffff")};
