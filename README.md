@@ -58,6 +58,7 @@
 
 ### 2021-03-09
 
+- [x] board, account, category 테이블 생성
 - [x] 내역 리스트 조회 기능 구현
 
 <details>
