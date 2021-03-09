@@ -44,12 +44,12 @@ const Input = () => {
     <Wrapper>
       <Item>
         <Name>분류</Name>
-        <Button state={income} onClick={onClickIncome}>
+        <Type state={income} onClick={onClickIncome}>
           수입
-        </Button>
-        <Button state={expend} onClick={onClickExpend}>
+        </Type>
+        <Type state={expend} onClick={onClickExpend}>
           지출
-        </Button>
+        </Type>
       </Item>
       <Items>
         <Div>
@@ -75,6 +75,7 @@ const Input = () => {
           <Content type="text" onChange={onChangeContent} />
         </Div>
       </Items>
+      <Button>확인</Button>
     </Wrapper>
   );
 };
@@ -95,7 +96,7 @@ const Name = styled.div`
   margin: 3px;
 `;
 
-const Button = styled.button`
+const Type = styled.button`
   width: 50px;
   padding: 3px 0;
   margin-left: 10px;
@@ -124,11 +125,16 @@ const Date = styled.input`
   width: 140px;
   margin-left: 10px;
   border: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: #f8f1f1;
 `;
 
 const Select = styled.select`
   width: 120px;
   margin-left: 10px;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: #f8f1f1;
 `;
 
 const Content = styled.input`
@@ -136,7 +142,24 @@ const Content = styled.input`
   text-align: center;
   margin-left: 10px;
   border: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: #f8f1f1;
   outline: none;
+`;
+
+const Button = styled.button`
+  width: 600px;
+  height: 30px;
+  margin: 17px 0;
+  background-color: #ff4646;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 10pt;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
 `;
 
 export default Input;
