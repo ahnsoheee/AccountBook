@@ -10,15 +10,15 @@ class LogService {
     return result;
   }
 
-  // async create(log) {
-  //   let result;
-  //   try {
-  //     result = await logModel.add(log);
-  //   } catch (err) {
-  //     return false;
-  //   }
-  //   return result;
-  // }
+  async create(log) {
+    let result;
+    try {
+      result = await logModel.add(log);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
 
   // async delete(log) {
   //   let result;

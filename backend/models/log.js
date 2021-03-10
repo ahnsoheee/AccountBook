@@ -10,20 +10,16 @@ class Log {
     return result;
   }
 
-  // async add(log) {
-  //   const db = await connect();
-  //   let sql, params;
-  //   sql = "SELECT name FROM account WHERE id = (?)";
-  //   params = [log.accountId];
-  //   const [account] = await db.query(sql, params);
-  //   sql = "INSERT INTO board(user_id, type, category, account, title, date, cost) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  //   params = [log.user, log.type, log.category, account[0].name, log.title, log.date, log.cost];
-  //   const [result] = await db.query(sql, params);
-  //   if (result.affectedRows) {
-  //     return await this.update(db, log, "add");
-  //   }
-  //   return result;
-  // }
+  async add(log) {
+    const db = await connect();
+    const sql = "INSERT INTO board(user_id, category_id, account_id, title, date, cost) VALUES (?, ?, ?, ?, ?, ?)";
+    const params = [log.user_id, log.category_id, log.account_id, log.title, log.date, log.cost];
+    const [result] = await db.query(sql, params);
+    if (result.affectedRows) {
+      return await this.update(db, log);
+    }
+    return result;
+  }
 
   // async delete(id) {
   //   const db = await connect();
@@ -39,17 +35,17 @@ class Log {
   //   return result;
   // }
 
-  // async update(db, log, method) {
-  //   let sql;
-  //   if ((method === "add" && log.type === "수입") || (method === "delete" && log.type === "지출")) {
-  //     sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
-  //   } else {
-  //     sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
-  //   }
-  //   const params = [log.cost, log.accountId];
-  //   const [res] = await db.query(sql, params);
-  //   return res;
-  // }
+  async update(db, log) {
+    let sql, params;
+    sql = "SELECT type FROM category WHERE id = (?)";
+    params = [log.category_id];
+    const [res] = await db.query(sql, params);
+    if (res[0].type === "수입") sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
+    else sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
+    params = [log.cost, log.account_id];
+    const [result] = await db.query(sql, params);
+    return result;
+  }
 
   // async findByType(id, type) {
   //   const db = await connect();
