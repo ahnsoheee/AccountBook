@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState, useEffect, useCallack } from "react";
 import styled from "styled-components";
 import Content from "./Content";
 import Input from "./Input";
 import Log from "./Log";
+import { API } from "../../api/api";
 
-const List = ({ logs }) => {
+const List = ({ user }) => {
+  const [logs, setLog] = useState("");
+
+  useEffect(async () => {
+    const logs = await API.post("/log", { id: user });
+    setLog(logs);
+  }, []);
+
   let sep = "";
 
   if (logs) {
@@ -53,7 +61,7 @@ const List = ({ logs }) => {
 
     return (
       <Content>
-        <Input />
+        <Input user={user} setLog={setLog} />
         {logList}
       </Content>
     );
