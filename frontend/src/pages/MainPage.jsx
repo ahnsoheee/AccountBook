@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Header from "../components/Main/Header";
+import Header from "../components/Common/Header";
 import Signin from "../components/Sign/Signin";
 import List from "../components/Main/List";
-import Tab from "../components/Main/Tab";
-import TabItem from "../components/Main/TabItem";
+import Tab from "../components/Common/Tab";
+import TabItem from "../components/Common/TabItem";
 import Content from "../components/Main/Content";
 import { API } from "../api/api";
 
@@ -16,7 +16,6 @@ const MainPage = () => {
   const [list, setList] = useState(true);
   const [cal, setCal] = useState(false);
   const [stat, setStat] = useState(false);
-  const [logs, setLogs] = useState("");
 
   useEffect(async () => {
     const user = await API.get("/user/auth");
@@ -24,12 +23,10 @@ const MainPage = () => {
       setName(user.name);
       setId(user.id);
       setAuth(true);
-      const logs = await API.post("/log", { id: id });
-      setLogs(logs);
     } else {
       setAuth(false);
     }
-  }, [name, isAuth]);
+  }, [id, name, isAuth]);
 
   const onClickList = () => {
     setList(true);
@@ -60,7 +57,7 @@ const MainPage = () => {
             <TabItem name="통계" onClick={onClickStat} state={stat} />
           </Tab>
         </Wrapper>
-        <Wrapper>{list ? <List logs={logs} /> : cal ? <Content>달력</Content> : <Content>통계</Content>}</Wrapper>
+        <Wrapper>{list ? <List user={id} /> : cal ? <Content>달력</Content> : <Content>통계</Content>}</Wrapper>
       </>
     </>
   ) : (
