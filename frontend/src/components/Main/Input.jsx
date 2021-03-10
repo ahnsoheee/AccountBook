@@ -1,34 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Category from "./Category";
+import Account from "./Account";
+import { API } from "../../api/api";
 
-const Input = () => {
+const Input = ({ user, setLog }) => {
   const [income, setIncome] = useState(true);
   const [expend, setExpend] = useState(false);
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
   const [account, setAccount] = useState("");
   const [cost, setCost] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
 
-  const onClickIncome = () => {
+  const [categories, setCategories] = useState("");
+  const [accounts, setAccounts] = useState("");
+
+  useEffect(async () => {
+    const categories = await API.post("/input/category", { id: user, type: "수입" });
+    const accounts = await API.post("/input/account", { id: user });
+    setCategories(categories);
+    setAccounts(accounts);
+  }, []);
+
+  const onClickIncome = async () => {
     setIncome(true);
     setExpend(false);
+    const categories = await API.post("/input/category", { id: user, type: "수입" });
+    setCategories(categories);
   };
 
-  const onClickExpend = () => {
+  const onClickExpend = async () => {
     setIncome(false);
     setExpend(true);
+    const categories = await API.post("/input/category", { id: user, type: "지출" });
+    setCategories(categories);
   };
 
   const onChangeDate = (e) => {
     setDate(e.target.value);
   };
 
-  const onChangeCategory = (e) => {
+  const onClickCategory = (e) => {
     setCategory(e.target.value);
   };
 
-  const onChangeAccount = (e) => {
+  const onClickAccount = (e) => {
     setAccount(e.target.value);
   };
 
@@ -36,8 +53,26 @@ const Input = () => {
     setCost(e.target.value);
   };
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onClick = async () => {
+    if (!date || !category || !account || !cost || !title) alert("모두 입력하세요");
+    else {
+      const result = await API.post("/log/add", {
+        user_id: user,
+        category_id: category,
+        account_id: account,
+        title: title,
+        date: date,
+        cost: cost,
+      });
+      if (result) {
+        const logs = await API.post("/log", { id: user });
+        setLog(logs);
+      }
+    }
   };
 
   return (
@@ -58,11 +93,11 @@ const Input = () => {
         </Div>
         <Div>
           <Name>카테고리</Name>
-          <Select onChange={onChangeCategory} />
+          <Category categories={categories} onClick={onClickCategory} />
         </Div>
         <Div>
           <Name>결제수단</Name>
-          <Select onChange={onChangeAccount} />
+          <Account accounts={accounts} onClick={onClickAccount} />
         </Div>
       </Items>
       <Items>
@@ -72,10 +107,10 @@ const Input = () => {
         </Div>
         <Div>
           <Name>내용</Name>
-          <Content type="text" onChange={onChangeContent} />
+          <Content type="text" onChange={onChangeTitle} />
         </Div>
       </Items>
-      <Button>확인</Button>
+      <Button onClick={onClick}>확인</Button>
     </Wrapper>
   );
 };
@@ -127,14 +162,7 @@ const Date = styled.input`
   border: none;
   border-bottom: 1px solid #cccccc;
   background-color: #f8f1f1;
-`;
-
-const Select = styled.select`
-  width: 120px;
-  margin-left: 10px;
-  border: none;
-  border-bottom: 1px solid #cccccc;
-  background-color: #f8f1f1;
+  outline: none;
 `;
 
 const Content = styled.input`
