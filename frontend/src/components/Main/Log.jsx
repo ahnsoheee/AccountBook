@@ -1,16 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-const Log = ({ id, type, category, title, account, cost }) => {
+const Log = ({ id, type, date, category_id, category, account_id, account, title, cost, setContent, setOpen }) => {
+  const onClick = () => {
+    if (type === "수입") {
+      setContent([true, false, id, date, category_id, account_id, cost, title]);
+    } else {
+      setContent([false, true, id, date, category_id, account_id, cost, title]);
+    }
+    setOpen(true);
+  };
+
   return (
-    <Wrapper>
-      <Category id={id} type={type}>
-        {category}
-      </Category>
-      <Title>{title}</Title>
-      <Account>{account}</Account>
-      <Cost type={type}>{cost}원</Cost>
-    </Wrapper>
+    <>
+      <Wrapper onClick={onClick}>
+        <Category id={id} type={type}>
+          {category}
+        </Category>
+        <Title>{title}</Title>
+        <Account>{account}</Account>
+        <Cost type={type}>{cost}원</Cost>
+      </Wrapper>
+    </>
   );
 };
 
@@ -18,6 +29,10 @@ const Wrapper = styled.div`
   display: flex;
   border-top: 1px solid #cccccc;
   padding: 3px;
+  &:hover {
+    background: rgba(255, 70, 70, 0.3);
+    cursor: pointer;
+  }
 `;
 
 const Category = styled.div`
@@ -41,7 +56,7 @@ const Title = styled.div`
 
 const Account = styled.div`
   width: 80px;
-  color: #cccccc;
+  color: #727272;
   font-size: 10pt;
   font-weight: bold;
   padding: 3px;
