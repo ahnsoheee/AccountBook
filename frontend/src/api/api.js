@@ -13,6 +13,14 @@ class fetchAPI {
       headers: { "Content-Type": "application/json" },
     }).then((res) => res.json());
   }
+
+  delete(uri, body) {
+    return fetch(uri, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then((res) => res.json());
+  }
 }
 
 const API = new fetchAPI();
