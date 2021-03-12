@@ -27,19 +27,19 @@ const Modal = ({ user, content, setOpen, setLog }) => {
     } else {
       categories = await API.post("/input/category", { id: user, type: "지출" });
     }
-    const accounts = await API.post("/input/account", { id: user });
     setCategories(categories);
+    const accounts = await API.post("/input/account", { id: user });
     setAccounts(accounts);
   }, []);
 
   const onClickIncome = async () => {
-    setInput([true, false, input[2], input[3], input[4], input[5], input[6], input[7]]);
+    setInput([true, false, input[2], input[3], "", input[5], input[6], input[7]]);
     const categories = await API.post("/input/category", { id: user, type: "수입" });
     setCategories(categories);
   };
 
   const onClickExpend = async () => {
-    setInput([false, true, input[2], input[3], input[4], input[5], input[6], input[7]]);
+    setInput([false, true, input[2], input[3], "", input[5], input[6], input[7]]);
     const categories = await API.post("/input/category", { id: user, type: "지출" });
     setCategories(categories);
   };
@@ -51,6 +51,7 @@ const Modal = ({ user, content, setOpen, setLog }) => {
   const onChangeDate = (e) => {
     setInput([input[0], input[1], input[2], e.target.value, input[4], input[5], input[6], input[7]]);
   };
+
   const onClickCategory = (e) => {
     setInput([input[0], input[1], input[2], input[3], e.target.value, input[5], input[6], input[7]]);
   };
@@ -68,19 +69,22 @@ const Modal = ({ user, content, setOpen, setLog }) => {
   };
 
   const onClickUpdate = async () => {
-    const result = await API.post("/log/update", {
-      id: input[2],
-      date: input[3],
-      category_id: input[4],
-      account_id: input[5],
-      cost: input[6],
-      title: input[7],
-      income: input[0],
-    });
-    if (result) {
-      const logs = await API.post("/log", { id: user });
-      setOpen(false);
-      setLog(logs);
+    if (!input[3] || !input[4] || !input[5] || !input[6] || !input[7]) alert("모두 입력하세요");
+    else {
+      const result = await API.post("/log/update", {
+        id: input[2],
+        date: input[3],
+        category_id: input[4],
+        account_id: input[5],
+        cost: input[6],
+        title: input[7],
+        income: input[0],
+      });
+      if (result) {
+        const logs = await API.post("/log", { id: user });
+        setOpen(false);
+        setLog(logs);
+      }
     }
   };
 
@@ -120,11 +124,11 @@ const Modal = ({ user, content, setOpen, setLog }) => {
           </Div>
           <Div>
             <Name>카테고리</Name>
-            <Category categories={categories} onClick={onClickCategory} value={input[4]} />
+            <Category categories={categories} onClick={onClickCategory} defaultValue={input[4]} />
           </Div>
           <Div>
             <Name>결제수단</Name>
-            <Account accounts={accounts} onClick={onClickAccount} value={input[5]} />
+            <Account accounts={accounts} onClick={onClickAccount} defaultValue={input[5]} />
           </Div>
         </Items>
         <Items>

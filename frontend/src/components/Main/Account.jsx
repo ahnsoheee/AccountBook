@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const Account = ({ accounts, onClick, value }) => {
+const Account = ({ accounts, onClick, defaultValue }) => {
   if (accounts) {
     const account = accounts.map((account) => {
-      return (
+      return defaultValue ? (
+        <option value={account.id} key={account.id} selected>
+          {account.name}
+        </option>
+      ) : (
         <option value={account.id} key={account.id}>
           {account.name}
         </option>
       );
     });
     return (
-      <Select onClick={onClick} value={value}>
+      <Select onClick={onClick}>
         <option value="none">선택하세요</option>
         {account}
       </Select>

@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const Category = ({ categories, onClick, value }) => {
+const Category = ({ categories, onClick, defaultValue }) => {
   if (categories) {
     const category = categories.map((category) => {
-      return (
+      return defaultValue ? (
+        <option value={category.id} key={category.id} selected>
+          {category.name}
+        </option>
+      ) : (
         <option value={category.id} key={category.id}>
           {category.name}
         </option>
       );
     });
     return (
-      <Select onClick={onClick} value={value}>
+      <Select onClick={onClick}>
         <option value="none">선택하세요</option>
         {category}
       </Select>
