@@ -22,6 +22,7 @@ class Log {
   }
 
   async addAccount(db, log) {
+    console.log(log);
     let sql;
     if (log.income) sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
     else sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
@@ -59,28 +60,21 @@ class Log {
     return result;
   }
 
-  // async delete(id) {
-  //   const db = await connect();
-  //   let sql;
-  //   sql = "SELECT type, account, cost FROM board WHERE id = (?)";
-  //   const params = [id];
-  //   const [record] = await db.query(sql, params);
-  //   sql = "DELETE FROM board WHERE id = (?)";
-  //   const [result] = await db.query(sql, params);
-  //   if (result.affectedRows) {
-  //     return await this.update(db, id, record[0], "delete");
-  //   }
-  //   return result;
-  // }
+  async delete(log) {
+    let sql, params;
+    const db = await connect();
+    sql = "DELETE FROM board WHERE id = (?)";
+    params = log.id;
+    const [result] = await db.query(sql, params);
 
-  // async findByType(id, type) {
-  //   const db = await connect();
-  //   const sql =
-  //     "SELECT board.id, board.category, board.account, board.title, board.date, board.cost FROM board, type WHERE board.user_id = (?) and type.name = (?) ";
-  //   const params = [id, type];
-  //   const [result] = await db.query(sql, params);
-  //   return result;
-  // }
+    if (result.affectedRows) {
+      if (log.income) sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
+      else sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
+      params = [log.cost, log.account_id];
+      return await db.query(sql, params);
+    }
+    return result;
+  }
 }
 
 const log = new Log();

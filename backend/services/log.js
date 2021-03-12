@@ -30,15 +30,15 @@ class LogService {
     return result;
   }
 
-  // async delete(log) {
-  //   let result;
-  //   try {
-  //     result = await logModel.delete(log.id);
-  //   } catch (err) {
-  //     return false;
-  //   }
-  //   return result;
-  // }
+  async delete(log) {
+    let result;
+    try {
+      result = await logModel.delete(log);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
 }
 
 const logService = new LogService();
