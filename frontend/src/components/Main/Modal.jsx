@@ -84,6 +84,19 @@ const Modal = ({ user, content, setOpen, setLog }) => {
     }
   };
 
+  const onClickDelete = async () => {
+    const result = await API.delete("/log/delete", {
+      id: input[2],
+      account_id: input[5],
+      cost: input[6],
+      income: input[0],
+    });
+    if (result) {
+      const logs = await API.post("/log", { id: user });
+      setOpen(false);
+      setLog(logs);
+    }
+  };
   return (
     <Wrapper>
       <Content>
@@ -127,7 +140,9 @@ const Modal = ({ user, content, setOpen, setLog }) => {
         <Button backgrondColor={"#ff4646"} onClick={onClickUpdate}>
           수정
         </Button>
-        <Button backgrondColor={"#ff9292"}>삭제</Button>
+        <Button backgrondColor={"#ff9292"} onClick={onClickDelete}>
+          삭제
+        </Button>
       </Content>
     </Wrapper>
   );
