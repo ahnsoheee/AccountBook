@@ -4,7 +4,7 @@ class Log {
   async findById(user) {
     const db = await connect();
     const sql =
-      "SELECT id, (SELECT c.type FROM category c WHERE b.category_id=c.id) AS type, (SELECT c.name FROM category c WHERE b.category_id=c.id) AS category, title, date, cost, (SELECT a.name FROM account a WHERE a.id=b.account_id) AS account FROM board b WHERE user_id=(?) ORDER BY date DESC";
+      "SELECT id, category_id, (SELECT c.type FROM category c WHERE b.category_id=c.id) AS type, (SELECT c.name FROM category c WHERE b.category_id=c.id) AS category, title, date, cost, account_id, (SELECT a.name FROM account a WHERE a.id=b.account_id) AS account FROM board b WHERE user_id=(?) ORDER BY date DESC";
     const params = [user];
     const [result] = await db.query(sql, params);
     return result;
@@ -16,7 +16,45 @@ class Log {
     const params = [log.user_id, log.category_id, log.account_id, log.title, log.date, log.cost];
     const [result] = await db.query(sql, params);
     if (result.affectedRows) {
-      return await this.update(db, log);
+      return await this.addAccount(db, log);
+    }
+    return result;
+  }
+
+  async addAccount(db, log) {
+    let sql;
+    if (log.income) sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
+    else sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
+    const params = [log.cost, log.account_id];
+    const [result] = await db.query(sql, params);
+    return result;
+  }
+
+  async update(log) {
+    const db = await connect();
+    let sql, params;
+    sql = "SELECT account_id, cost FROM board WHERE id=(?)";
+    params = [log.id];
+    const [prev] = await db.query(sql, params);
+
+    sql = "UPDATE board SET category_id=(?), account_id=(?), title=(?), date=(?), cost=(?) WHERE id = (?)";
+    params = [log.category_id, log.account_id, log.title, log.date, log.cost, log.id];
+    const [result] = await db.query(sql, params);
+    if (result.affectedRows) {
+      return await this.updateAccount(db, log, prev);
+    }
+    return result;
+  }
+
+  async updateAccount(db, log, prev) {
+    let sql, params;
+    if (log.income) sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
+    else sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
+    params = [prev.cost, prev.account_id];
+    const [result] = await db.query(sql, params);
+
+    if (result) {
+      return await this.addAccount(db, log);
     }
     return result;
   }
@@ -34,18 +72,6 @@ class Log {
   //   }
   //   return result;
   // }
-
-  async update(db, log) {
-    let sql, params;
-    sql = "SELECT type FROM category WHERE id = (?)";
-    params = [log.category_id];
-    const [res] = await db.query(sql, params);
-    if (res[0].type === "수입") sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
-    else sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
-    params = [log.cost, log.account_id];
-    const [result] = await db.query(sql, params);
-    return result;
-  }
 
   // async findByType(id, type) {
   //   const db = await connect();

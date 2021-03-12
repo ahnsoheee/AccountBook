@@ -20,6 +20,16 @@ class LogService {
     return result;
   }
 
+  async update(log) {
+    let result;
+    try {
+      result = await logModel.update(log);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
+
   // async delete(log) {
   //   let result;
   //   try {

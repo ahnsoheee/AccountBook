@@ -17,3 +17,9 @@ exports.deleteLog = async (req, res, next) => {
   const result = await logService.delete(logDTO);
   res.json(result);
 };
+
+exports.updateLog = async (req, res, next) => {
+  const logDTO = req.body;
+  const result = await logService.update(logDTO);
+  res.json(result);
+};
