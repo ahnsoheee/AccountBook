@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallack } from "react";
 import styled from "styled-components";
 import Log from "./Log";
-import Modal from "./Modal";
+import Detail from "./Detail";
 import { API } from "../../api/api";
 
 const List = ({ user, logs, setLog }) => {
@@ -87,7 +87,7 @@ const List = ({ user, logs, setLog }) => {
 
     return open ? (
       <>
-        {logList} <Modal user={user} content={content} setOpen={setOpen} setLog={setLog}></Modal>
+        {logList} <Detail user={user} content={content} setOpen={setOpen} setLog={setLog}></Detail>
       </>
     ) : (
       <>{logList}</>

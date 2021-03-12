@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Category from "./Category";
 import Account from "./Account";
+import Modal from "../Common/Modal";
 import { API } from "../../api/api";
 
-const Modal = ({ user, content, setOpen, setLog }) => {
+const Detail = ({ user, content, setOpen, setLog }) => {
   // income, expend, id, date, category, account, cost, title
   const [input, setInput] = useState([
     content[0],
@@ -102,93 +103,49 @@ const Modal = ({ user, content, setOpen, setLog }) => {
     }
   };
   return (
-    <Wrapper>
-      <Content>
-        <Header>
-          <Title></Title>
-          <CloseButton onClick={onClose}>X</CloseButton>
-        </Header>
-        <Item>
-          <Name>분류</Name>
-          <Type state={input[0]} onClick={onClickIncome}>
-            수입
-          </Type>
-          <Type state={input[1]} onClick={onClickExpend}>
-            지출
-          </Type>
-        </Item>
-        <Items>
-          <Div>
-            <Name>날짜</Name>
-            <Date type="date" value={input[3]} onChange={onChangeDate} />
-          </Div>
-          <Div>
-            <Name>카테고리</Name>
-            <Category categories={categories} onClick={onClickCategory} defaultValue={input[4]} />
-          </Div>
-          <Div>
-            <Name>결제수단</Name>
-            <Account accounts={accounts} onClick={onClickAccount} defaultValue={input[5]} />
-          </Div>
-        </Items>
-        <Items>
-          <Div>
-            <Name>금액</Name>
-            <Input type="text" value={input[6]} onChange={onChangeCost} />
-          </Div>
-          <Div>
-            <Name>내용</Name>
-            <Input type="text" value={input[7]} onChange={onChangeTitle} />
-          </Div>
-        </Items>
-        <Button backgrondColor={"#ff4646"} onClick={onClickUpdate}>
-          수정
-        </Button>
-        <Button backgrondColor={"#ff9292"} onClick={onClickDelete}>
-          삭제
-        </Button>
-      </Content>
-    </Wrapper>
+    <Modal onClose={onClose}>
+      <Item>
+        <Name>분류</Name>
+        <Type state={input[0]} onClick={onClickIncome}>
+          수입
+        </Type>
+        <Type state={input[1]} onClick={onClickExpend}>
+          지출
+        </Type>
+      </Item>
+      <Items>
+        <Div>
+          <Name>날짜</Name>
+          <Date type="date" value={input[3]} onChange={onChangeDate} />
+        </Div>
+        <Div>
+          <Name>카테고리</Name>
+          <Category categories={categories} onClick={onClickCategory} defaultValue={input[4]} />
+        </Div>
+        <Div>
+          <Name>결제수단</Name>
+          <Account accounts={accounts} onClick={onClickAccount} defaultValue={input[5]} />
+        </Div>
+      </Items>
+      <Items>
+        <Div>
+          <Name>금액</Name>
+          <Input type="text" value={input[6]} onChange={onChangeCost} />
+        </Div>
+        <Div>
+          <Name>내용</Name>
+          <Input type="text" value={input[7]} onChange={onChangeTitle} />
+        </Div>
+      </Items>
+      <Button backgrondColor={"#ff4646"} onClick={onClickUpdate}>
+        수정
+      </Button>
+      <Button backgrondColor={"#ff9292"} onClick={onClickDelete}>
+        삭제
+      </Button>
+    </Modal>
   );
 };
-
-const Wrapper = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
-
-const Content = styled.div`
-  background-color: #f8f1f1;
-  margin: 10% auto;
-  border: 1px solid #888;
-  width: 90vh;
-  position: relative;
-  padding: 20px;
-  border-radius: 13px;
-`;
-
-const Header = styled.div`
-  display: flex;
-`;
-
-const Title = styled.div`
-  width: 90%;
-  padding: 20px 0 0 40px;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-`;
-
-const CloseButton = styled.div`
-  padding: 20px 20px 0 0;
-  font-size: 15px;
-  cursor: pointer;
-`;
 
 const Item = styled.div`
   display: flex;
@@ -261,4 +218,4 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export default Modal;
+export default Detail;
