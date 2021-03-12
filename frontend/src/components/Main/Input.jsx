@@ -4,15 +4,7 @@ import Category from "./Category";
 import Account from "./Account";
 import { API } from "../../api/api";
 
-const Input = ({ user, setLog }) => {
-  const [income, setIncome] = useState(true);
-  const [expend, setExpend] = useState(false);
-  const [date, setDate] = useState("");
-  const [category, setCategory] = useState("");
-  const [account, setAccount] = useState("");
-  const [cost, setCost] = useState("");
-  const [title, setTitle] = useState("");
-
+const Input = ({ user, setLog, input, setInput }) => {
   const [categories, setCategories] = useState("");
   const [accounts, setAccounts] = useState("");
 
@@ -24,49 +16,48 @@ const Input = ({ user, setLog }) => {
   }, []);
 
   const onClickIncome = async () => {
-    setIncome(true);
-    setExpend(false);
+    setInput([true, false, input[2], input[3], input[4], input[5], input[6]]);
     const categories = await API.post("/input/category", { id: user, type: "수입" });
     setCategories(categories);
   };
 
   const onClickExpend = async () => {
-    setIncome(false);
-    setExpend(true);
+    setInput([false, true, input[2], input[3], input[4], input[5], input[6]]);
     const categories = await API.post("/input/category", { id: user, type: "지출" });
     setCategories(categories);
   };
 
   const onChangeDate = (e) => {
-    setDate(e.target.value);
+    setInput([input[0], input[1], e.target.value, input[3], input[4], input[5], input[6]]);
   };
 
   const onClickCategory = (e) => {
-    setCategory(e.target.value);
+    setInput([input[0], input[1], input[2], e.target.value, input[4], input[5], input[6]]);
   };
 
   const onClickAccount = (e) => {
-    setAccount(e.target.value);
+    setInput([input[0], input[1], input[2], input[3], e.target.value, input[5], input[6]]);
   };
 
   const onChangeCost = (e) => {
-    setCost(e.target.value);
+    setInput([input[0], input[1], input[2], input[3], input[4], e.target.value, input[6]]);
   };
 
   const onChangeTitle = (e) => {
-    setTitle(e.target.value);
+    setInput([input[0], input[1], input[2], input[3], input[4], input[5], e.target.value]);
   };
 
   const onClick = async () => {
-    if (!date || !category || !account || !cost || !title) alert("모두 입력하세요");
+    if (!input[2] || !input[3] || !input[4] || !input[5] || !input[6]) alert("모두 입력하세요");
     else {
       const result = await API.post("/log/add", {
         user_id: user,
-        category_id: category,
-        account_id: account,
-        title: title,
-        date: date,
-        cost: cost,
+        date: input[2],
+        category_id: input[3],
+        account_id: input[4],
+        cost: input[5],
+        title: input[6],
+        income: input[0],
       });
       if (result) {
         const logs = await API.post("/log", { id: user });
@@ -79,10 +70,10 @@ const Input = ({ user, setLog }) => {
     <Wrapper>
       <Item>
         <Name>분류</Name>
-        <Type state={income} onClick={onClickIncome}>
+        <Type state={input[0]} onClick={onClickIncome}>
           수입
         </Type>
-        <Type state={expend} onClick={onClickExpend}>
+        <Type state={input[1]} onClick={onClickExpend}>
           지출
         </Type>
       </Item>

@@ -6,6 +6,7 @@ import List from "../components/Main/List";
 import Tab from "../components/Common/Tab";
 import TabItem from "../components/Common/TabItem";
 import Content from "../components/Main/Content";
+import Input from "../components/Main/Input";
 import { API } from "../api/api";
 
 const MainPage = () => {
@@ -16,6 +17,11 @@ const MainPage = () => {
   const [list, setList] = useState(true);
   const [cal, setCal] = useState(false);
   const [stat, setStat] = useState(false);
+
+  const [logs, setLog] = useState("");
+
+  // income, expend, date, category, account, cost, title
+  const [input, setInput] = useState([true, false, "", "", "", "", ""]);
 
   useEffect(async () => {
     const user = await API.get("/user/auth");
@@ -57,7 +63,18 @@ const MainPage = () => {
             <TabItem name="통계" onClick={onClickStat} state={stat} />
           </Tab>
         </Wrapper>
-        <Wrapper>{list ? <List user={id} /> : cal ? <Content>달력</Content> : <Content>통계</Content>}</Wrapper>
+        <Wrapper>
+          {list ? (
+            <Content>
+              <Input user={id} setLog={setLog} input={input} setInput={setInput}></Input>
+              <List user={id} logs={logs} setLog={setLog} input={input} />
+            </Content>
+          ) : cal ? (
+            <Content>달력</Content>
+          ) : (
+            <Content>통계</Content>
+          )}
+        </Wrapper>
       </>
     </>
   ) : (

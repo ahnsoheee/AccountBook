@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useCallack } from "react";
 import styled from "styled-components";
-import Content from "./Content";
-import Input from "./Input";
 import Log from "./Log";
+import Modal from "./Modal";
 import { API } from "../../api/api";
 
-const List = ({ user }) => {
-  const [logs, setLog] = useState("");
+const List = ({ user, logs, setLog }) => {
+  const [content, setContent] = useState([true, false, "", "", "", "", "", ""]);
+  const [open, setOpen] = useState(false); // 내역 클릭했는지
+
+  let sep = "";
 
   useEffect(async () => {
     const logs = await API.post("/log", { id: user });
     setLog(logs);
   }, []);
-
-  let sep = "";
 
   if (logs) {
     const costs = [];
@@ -49,24 +49,51 @@ const List = ({ user }) => {
               <Income>+{costs[i][0]}원</Income>
               <Expend>-{costs[i][1]}원</Expend>
             </Div>
-            <Log key={log.id} type={log.type} title={log.title} category={log.category} account={log.account} cost={`${code}${log.cost}`} />
+            <Log
+              key={log.id}
+              id={log.id}
+              type={log.type}
+              date={log.date}
+              title={log.title}
+              category_id={log.category_id}
+              category={log.category}
+              account_id={log.account_id}
+              account={log.account}
+              cost={`${code}${log.cost}`}
+              setContent={setContent}
+              setOpen={setOpen}
+            />
           </Wrapper>
         );
       } else {
         return (
-          <Log key={log.id} type={log.type} title={log.title} category={log.category} account={log.account} cost={`${code}${log.cost}`} />
+          <Log
+            key={log.id}
+            id={log.id}
+            type={log.type}
+            date={log.date}
+            title={log.title}
+            category_id={log.category_id}
+            category={log.category}
+            account_id={log.account_id}
+            account={log.account}
+            cost={`${code}${log.cost}`}
+            setContent={setContent}
+            setOpen={setOpen}
+          />
         );
       }
     });
 
-    return (
-      <Content>
-        <Input user={user} setLog={setLog} />
-        {logList}
-      </Content>
+    return open ? (
+      <>
+        {logList} <Modal user={user} content={content} setOpen={setOpen} setLog={setLog}></Modal>
+      </>
+    ) : (
+      <>{logList}</>
     );
   }
-  return <Content></Content>;
+  return <></>;
 };
 
 const Wrapper = styled.div``;
