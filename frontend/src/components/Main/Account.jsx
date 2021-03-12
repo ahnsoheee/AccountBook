@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Account = ({ accounts, onClick }) => {
+const Account = ({ accounts, onClick, value }) => {
   if (accounts) {
     const account = accounts.map((account) => {
       return (
@@ -11,7 +11,7 @@ const Account = ({ accounts, onClick }) => {
       );
     });
     return (
-      <Select onClick={onClick}>
+      <Select onClick={onClick} value={value}>
         <option value="none">선택하세요</option>
         {account}
       </Select>
