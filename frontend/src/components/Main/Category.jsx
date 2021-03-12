@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Category = ({ categories, onClick }) => {
+const Category = ({ categories, onClick, value }) => {
   if (categories) {
     const category = categories.map((category) => {
       return (
@@ -11,7 +11,7 @@ const Category = ({ categories, onClick }) => {
       );
     });
     return (
-      <Select onClick={onClick}>
+      <Select onClick={onClick} value={value}>
         <option value="none">선택하세요</option>
         {category}
       </Select>
