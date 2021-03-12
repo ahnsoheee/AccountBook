@@ -40,22 +40,17 @@ class Log {
 
     sql = "UPDATE board SET category_id=(?), account_id=(?), title=(?), date=(?), cost=(?) WHERE id = (?)";
     params = [log.category_id, log.account_id, log.title, log.date, log.cost, log.id];
-    const [result] = await db.query(sql, params);
-    if (result.affectedRows) {
-      return await this.updateAccount(db, log, prev);
-    }
-    return result;
-  }
+    const [res] = await db.query(sql, params);
+    if (res.affectedRows) {
+      if (log.income) sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
+      else sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
+      params = [prev.cost, prev.account_id];
+      const [result] = await db.query(sql, params);
 
-  async updateAccount(db, log, prev) {
-    let sql, params;
-    if (log.income) sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
-    else sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
-    params = [prev.cost, prev.account_id];
-    const [result] = await db.query(sql, params);
-
-    if (result) {
-      return await this.addAccount(db, log);
+      if (result) {
+        return await this.addAccount(db, log);
+      }
+      return result;
     }
     return result;
   }
