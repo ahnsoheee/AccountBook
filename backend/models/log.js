@@ -22,7 +22,6 @@ class Log {
   }
 
   async addAccount(db, log) {
-    console.log(log);
     let sql;
     if (log.income) sql = "UPDATE account SET asset = asset+(?) WHERE id = (?)";
     else sql = "UPDATE account SET asset = asset-(?) WHERE id = (?)";
