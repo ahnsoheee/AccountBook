@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Menu from "./Menu";
 
-const Header = ({ user }) => {
+const Header = ({ id, name }) => {
   return (
     <Wrapper>
       <Title>가계부</Title>
-      <Menu user={user} />
+      <Menu id={id} name={name} />
     </Wrapper>
   );
 };
