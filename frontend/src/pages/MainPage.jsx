@@ -54,7 +54,7 @@ const MainPage = () => {
 
   return isAuth ? (
     <>
-      <Header user={name} />
+      <Header id={id} name={name}/>
       <>
         <Wrapper>
           <Tab>
