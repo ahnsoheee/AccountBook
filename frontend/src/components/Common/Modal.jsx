@@ -24,6 +24,7 @@ const Wrapper = styled.div`
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
 `;
+
 const Content = styled.div`
   background-color: #f8f1f1;
   margin: 10% auto;
@@ -44,12 +45,14 @@ const Title = styled.div`
   font-size: 15px;
   text-align: center;
   font-weight: bold;
+  color: #ff4646;
 `;
 
 const CloseButton = styled.div`
   padding: 20px 20px 0 0;
   font-size: 15px;
   cursor: pointer;
+  color: #000000;
 `;
 
 export default Modal;
