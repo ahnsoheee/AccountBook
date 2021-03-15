@@ -36,7 +36,7 @@
 
 - [x] 로그인 상태 유지하기
 - [x] 로그아웃 기능 구현
-- [x] 탭 메뉴 구현
+- [x] 탭 UI
 
   <details>
     <summary>탭 메뉴</summary>
@@ -47,7 +47,7 @@
 
 ### 2021-03-06
 
-- [x] 내역 입력 폼 구현
+- [x] 내역 입력 UI
 
   <details>
     <summary>내역 입력 폼</summary>
@@ -75,10 +75,10 @@
 
 ### 2021-03-11
 
-- [x] 내역 수정/삭제 모달 구현
+- [x] 내역 수정/삭제 UI
 
   <details>
-    <summary>내역 수정/삭제 모달</summary>
+    <summary>내역 수정/삭제 UI</summary>
     
   - 내역 클릭 시
   ![image](https://user-images.githubusercontent.com/61968474/110971492-4c1d6b80-839e-11eb-90be-bcf112aba701.png)
@@ -88,3 +88,15 @@
 ### 2021-03-12
 
 - [x] 내역 수정 기능 구현
+
+### 2021-03-15
+
+- [x] 카테고리 관리 UI
+
+  <details>
+    <summary>카테고리 관리 UI</summary>
+
+  - 카테고리 관리 클릭 시  
+    ![image](https://user-images.githubusercontent.com/61968474/111165870-deae4c80-85e2-11eb-95cf-585e772627a8.png)
+
+  </details>
