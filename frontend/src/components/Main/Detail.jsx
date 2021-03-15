@@ -137,10 +137,10 @@ const Detail = ({ user, content, setOpen, setLog }) => {
           <Input type="text" value={input[7]} onChange={onChangeTitle} />
         </Div>
       </Items>
-      <Button backgrondColor={"#ff4646"} onClick={onClickUpdate}>
+      <Button backgroundColor={"#ff4646"} onClick={onClickUpdate}>
         수정
       </Button>
-      <Button backgrondColor={"#ff9292"} onClick={onClickDelete}>
+      <Button backgroundColor={"#ff9292"} onClick={onClickDelete}>
         삭제
       </Button>
     </Modal>
@@ -207,7 +207,7 @@ const Button = styled.button`
   width: 285px;
   height: 30px;
   margin: 10px 5px;
-  background-color: ${(props) => props.backgrondColor};
+  background-color: ${(props) => props.backgroundColor};
   text-align: center;
   color: #ffffff;
   border-radius: 6px;
