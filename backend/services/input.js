@@ -20,6 +20,16 @@ class InputService {
     }
     return result;
   }
+
+  async deleteCategory(category) {
+    let result;
+    try {
+      result = await inputModel.deleteCategory(category);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
 }
 
 const inputService = new InputService();

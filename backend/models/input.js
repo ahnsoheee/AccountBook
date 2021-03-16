@@ -9,18 +9,18 @@ class Input {
     return result;
   }
 
-  async deleteCategory(category_id) {
-    const db = await connect();
-    const sql = "DELETE FROM category WHERE id = (?)";
-    const params = [category_id];
-    const [result] = await db.query(sql, params);
-    return result;
-  }
-
   async getAccount(user) {
     const db = await connect();
     const sql = "SELECT id, name FROM account WHERE user_id = (?)";
     const params = [user.id];
+    const [result] = await db.query(sql, params);
+    return result;
+  }
+
+  async deleteCategory(category) {
+    const db = await connect();
+    const sql = "DELETE FROM category WHERE id = (?)";
+    const params = [category.id];
     const [result] = await db.query(sql, params);
     return result;
   }

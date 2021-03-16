@@ -11,3 +11,9 @@ exports.getAccount = async (req, res, next) => {
   const result = await inputService.readAccount(userDTO);
   res.json(result);
 };
+
+exports.deleteCategory = async (req, res, next) => {
+  const categoryDTO = req.body;
+  const result = await inputService.deleteCategory(categoryDTO);
+  res.json(result);
+};
