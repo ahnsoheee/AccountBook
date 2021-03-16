@@ -50,7 +50,6 @@ const List = ({ user, logs, setLog }) => {
               <Expend>-{costs[i][1]}원</Expend>
             </Div>
             <Log
-              key={log.id}
               id={log.id}
               type={log.type}
               date={log.date}
@@ -68,7 +67,6 @@ const List = ({ user, logs, setLog }) => {
       } else {
         return (
           <Log
-            key={log.id}
             id={log.id}
             type={log.type}
             date={log.date}
