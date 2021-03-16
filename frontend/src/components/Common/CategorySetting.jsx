@@ -1,11 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "../Common/Modal";
+import Modal from "./Modal";
+import CategoryList from "./CategoryList";
 
-const CategorySetting = ({ setCategory, income, expend }) => {
+const CategorySetting = ({ user, setCategory, incomes, expends, setIncomes, setExpends }) => {
   const onClose = () => {
     setCategory(false);
   };
+
+  const income = incomes.map((income) => {
+    return <CategoryList key={income.id} id={income.id} name={income.name} user={user} setIncomes={setIncomes} setExpends={setExpends} />;
+  });
+
+  const expend = expends.map((expend) => {
+    return <CategoryList key={expend.id} id={expend.id} name={expend.name} user={user} setIncomes={setIncomes} setExpends={setExpends} />;
+  });
+
   return (
     <Modal title="카테고리 관리" onClose={onClose}>
       <Type backgroundColor="#ff9292">수입</Type>
