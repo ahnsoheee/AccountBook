@@ -100,3 +100,11 @@
     ![image](https://user-images.githubusercontent.com/61968474/111165870-deae4c80-85e2-11eb-95cf-585e772627a8.png)
 
   </details>
+
+### 2021-03-16
+
+- [x] 카테고리 삭제 기능 구현
+
+### 2021-03-17
+
+- [x] 카테고리 내역 변경 후 리렌더링
