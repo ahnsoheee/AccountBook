@@ -8,10 +8,10 @@ const CategoryList = ({ id, name, user, setIncomes, setExpends }) => {
   };
 
   const onDelete = async () => {
-    const result = await API.delete("/input/category", { id: id });
+    const result = await API.delete("/category", { id: id });
     if (result) {
-      const incomes = await API.post("/input/category", { id: user, type: "수입" });
-      const expends = await API.post("/input/category", { id: user, type: "지출" });
+      const incomes = await API.post("/category", { id: user, type: "수입" });
+      const expends = await API.post("/category", { id: user, type: "지출" });
       setIncomes(incomes);
       setExpends(expends);
     }

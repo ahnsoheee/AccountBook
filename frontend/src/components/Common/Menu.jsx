@@ -11,8 +11,8 @@ const Menu = ({ id, name }) => {
   const [expends, setExpends] = useState("");
 
   useEffect(async () => {
-    const incomes = await API.post("/input/category", { id: id, type: "수입" });
-    const expends = await API.post("/input/category", { id: id, type: "지출" });
+    const incomes = await API.post("/category", { id: id, type: "수입" });
+    const expends = await API.post("/category", { id: id, type: "지출" });
     setIncomes(incomes);
     setExpends(expends);
   }, []);

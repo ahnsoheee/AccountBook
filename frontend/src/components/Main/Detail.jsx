@@ -24,24 +24,24 @@ const Detail = ({ user, content, setOpen, setLog }) => {
   useEffect(async () => {
     let categories;
     if (input[0]) {
-      categories = await API.post("/input/category", { id: user, type: "수입" });
+      categories = await API.post("/category", { id: user, type: "수입" });
     } else {
-      categories = await API.post("/input/category", { id: user, type: "지출" });
+      categories = await API.post("/category", { id: user, type: "지출" });
     }
     setCategories(categories);
-    const accounts = await API.post("/input/account", { id: user });
+    const accounts = await API.post("/account", { id: user });
     setAccounts(accounts);
   }, []);
 
   const onClickIncome = async () => {
     setInput([true, false, input[2], input[3], "", input[5], input[6], input[7]]);
-    const categories = await API.post("/input/category", { id: user, type: "수입" });
+    const categories = await API.post("/category", { id: user, type: "수입" });
     setCategories(categories);
   };
 
   const onClickExpend = async () => {
     setInput([false, true, input[2], input[3], "", input[5], input[6], input[7]]);
-    const categories = await API.post("/input/category", { id: user, type: "지출" });
+    const categories = await API.post("/category", { id: user, type: "지출" });
     setCategories(categories);
   };
 
