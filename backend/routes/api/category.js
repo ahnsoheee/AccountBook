@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../../controllers/input");
+const controller = require("../../controllers/category");
 
 router.post("/category", controller.getCategory);
-router.post("/account", controller.getAccount);
 router.delete("/category", controller.deleteCategory);
 
 module.exports = router;

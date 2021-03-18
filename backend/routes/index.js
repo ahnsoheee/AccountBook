@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const userRouter = require("./api/user");
 const logRouter = require("./api/log");
-const inputRouter = require("./api/input");
+const categoryRouter = require("./api/category");
+const accountRouter = require("./api/accunt");
 
 router.use("/user", userRouter);
 router.use("/log", logRouter);
-router.use("/input", inputRouter);
+router.use("/category", categoryRouter);
+router.use("/account", accountRouter);
 
 module.exports = router;
