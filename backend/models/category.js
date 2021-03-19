@@ -9,6 +9,22 @@ class Category {
     return result;
   }
 
+  async createCategory(category) {
+    const db = await connect();
+    const sql = "INSERT INTO category(type, name, user_id) VALUES(?, ?, ?)";
+    const params = [category.type, category.name, category.user_id];
+    const [result] = await db.query(sql, params);
+    return result;
+  }
+
+  async updateCategory(category) {
+    const db = await connect();
+    const sql = "UPDATE category SET name = (?) WHERE id = (?)";
+    const params = [category.name, category.id];
+    const [result] = await db.query(sql, params);
+    return result;
+  }
+
   async deleteCategory(category) {
     const db = await connect();
     const sql = "DELETE FROM category WHERE id = (?)";
