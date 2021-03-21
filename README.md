@@ -108,3 +108,30 @@
 ### 2021-03-17
 
 - [x] 카테고리 내역 변경 후 리렌더링
+
+### 2021-03-21
+
+- [x] 카테고리 관리
+
+  - 카테고리 추가
+  - 카테고리 삭제
+  <details>
+      <summary>카테고리 관리 UI</summary>
+
+  - 카테고리 관리 클릭 시  
+    ![image](https://user-images.githubusercontent.com/61968474/111908238-d13e0a00-8a9b-11eb-95e8-e0ca159dfa44.png)
+
+</details>
+
+- [x] 자산 관리
+
+  - 자산 추가
+  - 자산 삭제
+
+  <details>
+    <summary>자산 관리 UI</summary>
+
+  - 자산 관리 클릭 시  
+    ![image](https://user-images.githubusercontent.com/61968474/111908274-edda4200-8a9b-11eb-9058-eee99907c41a.png)
+
+  </details>
