@@ -2,19 +2,24 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Submenu from "./Submenu";
 import CategorySetting from "./CategorySetting";
+import AccountSetting from "./AccountSetting";
 import { API } from "../../api/api";
 
 const Menu = ({ id, name }) => {
   const [click, setClick] = useState(false);
   const [category, setCategory] = useState(false);
+  const [account, setAccount] = useState(false);
   const [incomes, setIncomes] = useState("");
   const [expends, setExpends] = useState("");
+  const [accounts, setAccounts] = useState("");
 
   useEffect(async () => {
     const incomes = await API.post("/category", { id: id, type: "수입" });
     const expends = await API.post("/category", { id: id, type: "지출" });
+    const accounts = await API.post("/account", { id: id });
     setIncomes(incomes);
     setExpends(expends);
+    setAccounts(accounts);
   }, []);
 
   const onClick = () => {
@@ -36,6 +41,10 @@ const Menu = ({ id, name }) => {
     setCategory(true);
   };
 
+  const onClickAccount = () => {
+    setAccount(true);
+  };
+
   return click ? (
     <>
       <MenuButton onClick={onClick}>{name}님</MenuButton>
@@ -52,6 +61,8 @@ const Menu = ({ id, name }) => {
             setExpends={setExpends}
           />
         )}
+        <Submenu onClick={onClickAccount}>자산 추가</Submenu>
+        {account && <AccountSetting user={id} setAccount={setAccount} accounts={accounts} setAccounts={setAccounts} />}
       </Wrapper>
     </>
   ) : (
