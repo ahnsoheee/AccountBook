@@ -96,8 +96,7 @@
   <details>
     <summary>카테고리 관리 UI</summary>
 
-  - 카테고리 관리 클릭 시  
-    ![image](https://user-images.githubusercontent.com/61968474/111165870-deae4c80-85e2-11eb-95cf-585e772627a8.png)
+  ![image](https://user-images.githubusercontent.com/61968474/111165870-deae4c80-85e2-11eb-95cf-585e772627a8.png)
 
   </details>
 
@@ -115,10 +114,9 @@
 
   - 카테고리 추가
   - 카테고리 삭제
-  <details>
-      <summary>카테고리 관리 UI</summary>
+    <details>
+        <summary>카테고리 관리 UI</summary>
 
-  - 카테고리 관리 클릭 시  
     ![image](https://user-images.githubusercontent.com/61968474/111908238-d13e0a00-8a9b-11eb-95e8-e0ca159dfa44.png)
 
 </details>
@@ -131,7 +129,6 @@
   <details>
     <summary>자산 관리 UI</summary>
 
-  - 자산 관리 클릭 시  
-    ![image](https://user-images.githubusercontent.com/61968474/111908274-edda4200-8a9b-11eb-9058-eee99907c41a.png)
+  ![image](https://user-images.githubusercontent.com/61968474/111908274-edda4200-8a9b-11eb-9058-eee99907c41a.png)
 
   </details>
