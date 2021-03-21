@@ -10,7 +10,6 @@ class Account {
   }
 
   async create(account) {
-    console.log(account);
     const db = await connect();
     let sql, params;
     sql = "SELECT id FROM account WHERE name = (?) and user_id = (?)";
