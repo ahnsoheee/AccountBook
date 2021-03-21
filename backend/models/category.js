@@ -1,7 +1,7 @@
 const connect = require("../db/mysql");
 
 class Category {
-  async getCategory(user) {
+  async read(user) {
     const db = await connect();
     const sql = "SELECT id, name FROM category WHERE user_id = (?) and type = (?)";
     const params = [user.id, user.type];
@@ -9,15 +9,21 @@ class Category {
     return result;
   }
 
-  async createCategory(category) {
+  async create(category) {
     const db = await connect();
-    const sql = "INSERT INTO category(type, name, user_id) VALUES(?, ?, ?)";
+    let sql;
     const params = [category.type, category.name, category.user_id];
-    const [result] = await db.query(sql, params);
-    return result;
+    sql = "SELECT id FROM category WHERE type = (?) and name = (?) and user_id = (?)";
+    const [prev] = await db.query(sql, params);
+    if (!prev.length) {
+      sql = "INSERT INTO category(type, name, user_id) VALUES(?, ?, ?)";
+      const [result] = await db.query(sql, params);
+      return result;
+    }
+    return false;
   }
 
-  async updateCategory(category) {
+  async update(category) {
     const db = await connect();
     const sql = "UPDATE category SET name = (?) WHERE id = (?)";
     const params = [category.name, category.id];
@@ -25,7 +31,7 @@ class Category {
     return result;
   }
 
-  async deleteCategory(category) {
+  async delete(category) {
     const db = await connect();
     const sql = "DELETE FROM category WHERE id = (?)";
     const params = [category.id];

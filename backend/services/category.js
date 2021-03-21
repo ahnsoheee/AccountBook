@@ -1,20 +1,40 @@
 const categoryModel = require("../models/category");
 
 class CategoryService {
-  async readCategory(user) {
+  async read(user) {
     let result;
     try {
-      result = await categoryModel.getCategory(user);
+      result = await categoryModel.read(user);
     } catch (err) {
       return false;
     }
     return result;
   }
 
-  async deleteCategory(category) {
+  async create(category) {
     let result;
     try {
-      result = await categoryModel.deleteCategory(category);
+      result = await categoryModel.create(category);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
+
+  async update(category) {
+    let result;
+    try {
+      result = await categoryModel.update(category);
+    } catch (err) {
+      return false;
+    }
+    return result;
+  }
+
+  async delete(category) {
+    let result;
+    try {
+      result = await categoryModel.delete(category);
     } catch (err) {
       return false;
     }
