@@ -81,6 +81,7 @@ const Button = styled.button`
   color: #ff4646;
   outline: none;
   border: none;
+  background-color: #f8f1f1;
 `;
 
 export default AccountSetting;
