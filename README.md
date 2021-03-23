@@ -114,10 +114,10 @@
 
   - 카테고리 추가
   - 카테고리 삭제
-    <details>
-        <summary>카테고리 관리 UI</summary>
+  <details>
+      <summary>카테고리 관리 UI</summary>
 
-    ![image](https://user-images.githubusercontent.com/61968474/111908238-d13e0a00-8a9b-11eb-95e8-e0ca159dfa44.png)
+  ![image](https://user-images.githubusercontent.com/61968474/111908238-d13e0a00-8a9b-11eb-95e8-e0ca159dfa44.png)
 
 </details>
 
