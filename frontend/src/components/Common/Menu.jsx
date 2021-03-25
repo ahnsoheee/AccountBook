@@ -50,7 +50,7 @@ const Menu = ({ id, name }) => {
       <MenuButton onClick={onClick}>{name}님</MenuButton>
       <Wrapper>
         <Submenu onClick={onClickLogout}>로그아웃</Submenu>
-        <Submenu onClick={onClickCategory}>카테고리 추가</Submenu>
+        <Submenu onClick={onClickCategory}>카테고리 관리</Submenu>
         {category && (
           <CategorySetting
             user={id}
@@ -61,7 +61,7 @@ const Menu = ({ id, name }) => {
             setExpends={setExpends}
           />
         )}
-        <Submenu onClick={onClickAccount}>자산 추가</Submenu>
+        <Submenu onClick={onClickAccount}>자산 관리</Submenu>
         {account && <AccountSetting user={id} setAccount={setAccount} accounts={accounts} setAccounts={setAccounts} />}
       </Wrapper>
     </>
