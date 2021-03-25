@@ -34,13 +34,14 @@ const List = ({ user, logs, setLog }) => {
     });
 
     costs[i] = [income, expend];
-    i = 0;
+    i = -1;
     const logList = logs.map((log) => {
       const dates = log.date.split("-");
       const date = `${dates[1]}월 ${dates[2].substring(0, 2)}일`;
       let code = "-";
       if (log.type === "수입") code = "+";
       if (sep !== date) {
+        i += 1;
         sep = date;
         return (
           <Wrapper key={date}>
