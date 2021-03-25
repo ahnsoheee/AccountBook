@@ -132,3 +132,13 @@
   ![image](https://user-images.githubusercontent.com/61968474/111908274-edda4200-8a9b-11eb-9058-eee99907c41a.png)
 
   </details>
+
+### 2021-03-25
+
+- [x] 카테고리 관리
+
+  - 카테고리 수정
+
+- [x] 자산 관리
+
+  - 자산 수정
