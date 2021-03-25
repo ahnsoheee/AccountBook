@@ -20,6 +20,6 @@ exports.createAccount = async (req, res, next) => {
 
 exports.updateAccount = async (req, res, next) => {
   const accountDTO = req.body;
-  const result = await categoryService.updateAccount(accountDTO);
+  const result = await accountService.update(accountDTO);
   res.json(result);
 };

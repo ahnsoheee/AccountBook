@@ -26,9 +26,10 @@ class Account {
 
   async update(account) {
     const db = await connect();
-    const sql = "UPDATE account SET name = (?) asset = (?) WHERE id = (?)";
+    const sql = "UPDATE account SET name = (?), asset = (?) WHERE id = (?)";
     const params = [account.name, account.asset, account.id];
     const [result] = await db.query(sql, params);
+    console.log(result);
     return result;
   }
 
