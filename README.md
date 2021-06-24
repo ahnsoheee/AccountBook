@@ -1,4 +1,7 @@
-# AccountBook
+![메인페이지](https://user-images.githubusercontent.com/61968474/123238100-2e24e280-d519-11eb-8672-a55da0f49acf.png)
+
+<details>
+<summary>개발 기록</summary>
 
 ### 2021-03-02
 
@@ -119,7 +122,7 @@
 
   ![image](https://user-images.githubusercontent.com/61968474/111908238-d13e0a00-8a9b-11eb-95e8-e0ca159dfa44.png)
 
-</details>
+  </details>
 
 - [x] 자산 관리
 
@@ -141,3 +144,5 @@
 
 - [x] 자산 관리
   - 자산 수정
+
+</details>
